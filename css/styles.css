@@ -75,6 +75,7 @@ button {
 
 #btn__reset:hover {
   transform: scale(1.1);
+  background-color: #5b85b7;
 }
 
 .main-container {
@@ -222,9 +223,6 @@ button {
   height: 200px;
   width: 200px;
   margin-bottom: 20px;
-  transition-duration: 2s;
-  transition-property: all;
-  /* transition-delay: 2s; */
 }
 
 i {

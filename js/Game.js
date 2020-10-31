@@ -25,14 +25,18 @@
         return this.phrases[randomInt];
     }
     handleInteraction = (target) => {
+        //disable the key and set the guess letter
         target.setAttribute('disabled', true);
         const guess = target.textContent;
+        
+        //if phrase includes the guess show the letter and check for win
         if(this.activePhrase.phrase.includes(guess)){
             target.classList.add('chosen');
             this.activePhrase.showMatchedLetter(guess);
             if (this.checkForWin()){
                 this.gameOver();
             }
+            //else mark the letter as wrong and lose a life
         } else {
             target.classList.add('wrong');
             this.removeLife();
