@@ -28,7 +28,7 @@
         //disable the key and set the guess letter
         target.setAttribute('disabled', true);
         const guess = target.textContent;
-        
+
         //if phrase includes the guess show the letter and check for win
         if(this.activePhrase.phrase.includes(guess)){
             target.classList.add('chosen');
@@ -47,7 +47,7 @@
         const liveHeart = document.querySelector('#scoreboard li img[src="images/heart.png"]');
         liveHeart.setAttribute('src', 'images/miss.png');
 
-        // inc missed and check for win
+        // increment missed and check for win
         this.missed++;
         if (this.missed >= 5){
             this.gameOver();
@@ -67,17 +67,18 @@
      }
     
     gameOver(){
+        //display overlay
         const overlay = document.querySelector('#overlay');
         overlay.style.display = 'flex';
+
+        //grab emoji div and button on overlay
         const message = overlay.querySelector('#game-over-message');
         const emojiDiv = overlay.querySelector('#game-over-emoji');
         const emoji = emojiDiv.firstElementChild;
         const button = emoji.parentElement.nextElementSibling;
 
-
-
         if (this.missed >= 5){
-            //change text and background color
+            //change overlay text and background color
             message.textContent = 'You Lost';
             button.textContent = 'Play Again?'
             overlay.className = 'lose';
@@ -88,7 +89,7 @@
                 emojiDiv.previousElementSibling.remove();
             }
         } else {
-            //change text and background color
+            //change overlay text and background color
             message.textContent = 'You Won!';
             button.textContent = 'Play Again?'
             overlay.className = 'win';
@@ -99,17 +100,13 @@
                 emojiDiv.previousElementSibling.remove();
             }
         }
-        this.resetGame();
+        this.resetUI();
     }
-    resetGame(){
-        //reset phrase ul
+    resetUI(){
+        //reset phrase Ul
         const phraseUl = document.querySelector('#phrase').firstElementChild;
         phraseUl.innerHTML = '';
      
-        //reset properties
-        this.missed = 0;
-        this.activePhrase = null;
-
         //reset keys
         const qwerty = document.querySelector('#qwerty').children;
         for (let i = 0; i < qwerty.length; i++){
